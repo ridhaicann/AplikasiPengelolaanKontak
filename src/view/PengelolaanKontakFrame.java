@@ -23,12 +23,19 @@ public class PengelolaanKontakFrame extends javax.swing.JFrame {
 
     private DefaultTableModel model;
     private KontakController controller;
+    
 
     /**
      * Creates new form PengelolaanKontakFrame
      */
     public PengelolaanKontakFrame() {
         initComponents();
+        // ===== Tambahan JScrollPane untuk daftar kategori =====
+String[] dataKategori = {"Keluarga", "Teman", "Rekan Kerja"};
+
+
+// ===== Akhir tambahan =====
+
         controller = new KontakController();
         model = new DefaultTableModel(new String[]{
             "No", "Nama", "Nomor Telepon", "Kategori"
@@ -36,6 +43,7 @@ public class PengelolaanKontakFrame extends javax.swing.JFrame {
         tblKontak.setModel(model);
         loadContacts();
     }
+    
 
 
     /**
@@ -164,9 +172,6 @@ public class PengelolaanKontakFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -189,9 +194,13 @@ public class PengelolaanKontakFrame extends javax.swing.JFrame {
                         .addComponent(btnHapus)
                         .addGap(61, 61, 61))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 50, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(118, 118, 118)))
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(69, 69, 69)
@@ -204,7 +213,7 @@ public class PengelolaanKontakFrame extends javax.swing.JFrame {
                         .addComponent(txtNomorTelepon)
                         .addComponent(txtNama)
                         .addComponent(cmbKategori, 0, 266, Short.MAX_VALUE))
-                    .addContainerGap(67, Short.MAX_VALUE)))
+                    .addContainerGap(108, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +231,7 @@ public class PengelolaanKontakFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnImpor, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEkspor, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(54, Short.MAX_VALUE))
@@ -663,6 +672,8 @@ private boolean validateCSVHeader(String header) {
     return header != null &&
            header.trim().equalsIgnoreCase("ID,Nama,Nomor Telepon,Kategori");
 }
+
+
 
 
 
